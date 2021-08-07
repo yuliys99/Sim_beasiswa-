@@ -31,7 +31,22 @@
             </div>
         </div>
         
-        
+        <div class="row">
+            <div class="col-12 grid-margin">
+                <div class="row">
+                    <div class="card-12 grid-margin stretch-card">
+                        <div class="card position-relative">
+                            <div class="card-body">
+                                @foreach($kuota as $kuota)
+                                    <h5 class="font-weight-bold mb-2">Jumlah Kuota Beasiswa {{$kuota->nama_beasiswa}} Utama = {{$kuota->kuota_utama}}, per-Prodi = {{ $kuota->kuota_prodi }}</h5>
+                                @endforeach
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
@@ -45,6 +60,7 @@
                                         <tr style="text-align: center">
                                             <th>No</th>
                                             <th>Nama Mahasiswa</th>
+                                            <th>Prodi</th>
                                             <th>NIM</th>
                                             <th>IPK</th>
                                             <th>Nama Beasiswa</th>
@@ -60,6 +76,7 @@
                                         <tr>
                                             <td style="text-align:center">{{ $no++ }}</td>
                                             <td>{{ $data->mahasiswa->nama }}</td>
+                                            <td>{{ $data->mahasiswa->prodi->nama_prodi }}</td>
                                             <td>{{ $data->mahasiswa->nim }}</td>
                                             <td>{{ $data->mahasiswa->ipk }}</td>
                                             <td>{{ $data->beasiswa->nama_beasiswa }}</td>

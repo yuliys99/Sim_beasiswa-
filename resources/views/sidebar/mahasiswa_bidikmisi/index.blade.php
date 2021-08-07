@@ -1,7 +1,7 @@
 @extends('layouts.admin-master')
 
 @section('title')
-    Data Mahasiswa Non Bidikmisi
+    Data Mahasiswa Bidikmisi
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-10 stretch-card">
-                            <h3 class="font-weight-bold ml-4">Data Mahasiswa Non Bidikmisi </h3>
+                            <h3 class="font-weight-bold ml-4">Data Mahasiswa Bidikmisi </h3>
                             {{-- <h5 class="font-weight-normal">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h5> --}}
                         </div>
                         <div class="col-2">
@@ -82,7 +82,7 @@
                                             <td>{{ $data->ipk }}</td>
                                             <td>{{ $data->no_wa }}</td>
                                             <td style="width: 15%">
-                                                <a href="{{ route('mahasiswa.edit', ['mahasiswa' => $data->id]) }}">
+                                                <a href="{{ route('mahasiswa-bidikmisi.profile', ['id' => $data->id]) }}">
                                                     <button class="btn btn-warning ti-pencil-alt"
                                                         title="Edit"></button>
                                                 </a>
@@ -117,7 +117,7 @@
                     <div class="modal-body">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <p>Apakah anda yakin ingin menghapus Mahasiswa ini ?</p>
+                        <p>Apakah anda yakin ingin menghapus Beasiswa ini ?</p>
                         <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Batal</button>
                         <button type="submit" name="" class="btn btn-danger float-right mr-2" data-dismiss="modal" onclick="formSubmit()">Hapus</button>
                     </div>
@@ -126,14 +126,14 @@
         </div>
     </div>
 
-    @include('sidebar.mahasiswa.create')
+    @include('sidebar.mahasiswa_bidikmisi.create')
 @endsection
 
 @section('js')
     <script type="text/javascript">
         function deleteData(id) {
             var id = id;
-            var url = '{{route("mahasiswa.destroy", ":id") }}';
+            var url = '{{route("mahasiswa-bidikmisi.delete", ":id") }}';
             url = url.replace(':id', id);
             $("#deleteForm").attr('action', url);
         }

@@ -82,9 +82,16 @@ class MahasiswaController extends Controller
 
     public function index()
     {
-        $data = Mahasiswa::orderBy('id', 'DESC')->get();
+        $data = Mahasiswa::where('status_bidikmisi', 0)->orderBy('id', 'DESC')->get();
         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
         return view('sidebar.mahasiswa.index', compact('data', 'prodi'));
+    }
+
+    public function mahasiswa_bidikmisi()
+    {
+        $data = Mahasiswa::where('status_bidikmisi', 1)->orderBy('id', 'DESC')->get();
+        $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+        return view('sidebar.mahasiswa_bidikmisi.index', compact('data', 'prodi'));
     }
 
     /**
@@ -136,7 +143,56 @@ class MahasiswaController extends Controller
             'no_wa' => $request->no_wa,
             'id_prodi' => $request->prodi,
             'id_user' => $last_id,
-            'status_bidikmisi' => $request->mahasiswa_bidikmisi
+            'status_bidikmisi' => 0
+        ];
+
+        
+        if ($file = $request->file('foto_khs')) {
+            $nama_file = "Foto_khs_".time(). ".jpeg";
+            $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
+            $data['foto_khs'] = $nama_file;
+        }
+
+        $last_id = Mahasiswa::create($data)->id;
+        DataRumah::create(['id_mahasiswa' => $last_id]);
+        DataKeluarga::create(['id_mahasiswa' => $last_id]);
+
+        return back()->with('success', 'Berhasil tambah data dengan password sesuai NIM (' .$request->nim. ')');
+    }
+    public function mahasiswa_bidikmisi_create(Request $request)
+    {
+        $cekUsername = User::where('username', $request->username)->first();
+
+        if ($cekUsername) {
+            return back()->with('error', 'Username yang anda gunakan sudah terdaftar');
+        }
+
+        $this->validate($request, [
+            'ipk' => 'regex:/^[0-9]+(\.[0-9][0-9]?)?$/'
+        ]);
+
+        $data_user = [
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'password' => bcrypt($request->nim),
+            'id_role' => 4,
+        ];
+
+        $last_id = User::create($data_user)->id;
+
+        $data = [
+            'nama' => $request->nama,
+            'nim' => $request->nim,
+            'semester' => $request->semester,
+            'kelas' => $request->kelas,
+            'ipk' => $request->ipk,
+            'nik' => $request->nik,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'no_wa' => $request->no_wa,
+            'id_prodi' => $request->prodi,
+            'id_user' => $last_id,
+            'status_bidikmisi' => 1
         ];
 
         
@@ -177,6 +233,14 @@ class MahasiswaController extends Controller
 
         return view('sidebar.mahasiswa.edit', compact('data', 'prodi'));
     }
+     
+    public function mahasiswa_bidikmisi_profile($id)
+    {
+        $data = Mahasiswa::find($id);
+        $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+
+        return view('sidebar.mahasiswa_bidikmisi.edit', compact('data', 'prodi'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -185,6 +249,7 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {
         $mahasiswa = Mahasiswa::find($id);
@@ -201,7 +266,65 @@ class MahasiswaController extends Controller
             'no_hp' => $request->no_hp,
             'no_wa' => $request->no_wa,
             'id_prodi' => $request->prodi,
-            'status_bidikmisi' => $request->mahasiswa_bidikmisi
+            'status_bidikmisi' => 0
+        ];
+
+        $data_user = [
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+        ];
+
+        if($request->password != null){
+            $data_user['password'] = bcrypt($request->password);
+        }
+
+        if ($file = $request->foto_profile){
+
+            if ($user->foto_profile) {
+                File::delete('Images/Profile/' . $user->foto_profile);
+            }
+
+            $nama_file = "Foto_Profile_".time(). ".jpeg";
+            $file->move(public_path() . '/Images/Profile/', $nama_file);  
+            $data_user['foto'] = $nama_file;
+        }
+
+        
+        if ($file = $request->foto_khs){
+
+            if ($mahasiswa->foto_khs) {
+                File::delete('Images/Mahasiswa/KHS/' . $mahasiswa->foto_khs);
+            }
+
+            $nama_file = "Foto_khs_".time(). ".jpeg";
+            $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
+            $data['foto_khs'] = $nama_file;
+        }
+
+        $user->update($data_user);
+        $mahasiswa->update($data);
+
+        return back()->with('success', 'Berhasil Edit data');
+    }
+
+    public function mahasiswa_bidikmisi_update(Request $request, $id)
+    {
+        $mahasiswa = Mahasiswa::find($id);
+        $user = User::find($mahasiswa->id_user);
+        
+        $data = [
+            'nama' => $request->nama,
+            'nim' => $request->nim,
+            'semester' => $request->semester,
+            'kelas' => $request->kelas,
+            'ipk' => $request->ipk,
+            'nik' => $request->nik,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'no_wa' => $request->no_wa,
+            'id_prodi' => $request->prodi,
+            'status_bidikmisi' => 1
         ];
 
         $data_user = [
@@ -249,7 +372,19 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
+    {
+        $mahasiswa = Mahasiswa::find($id);
+        $user = User::find($mahasiswa->id_user);
+
+        $mahasiswa->delete();
+        $user->delete();
+
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
+    }
+
+    public function mahasiswa_bidikmisi_delete($id)
     {
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);

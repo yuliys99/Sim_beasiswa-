@@ -8,7 +8,7 @@ class Beasiswa extends Model
 {
     protected $table = 'beasiswa';
     protected $fillable = [
-        'nama_beasiswa', 'tahun_perolehan', 'min_ipk', 
+        'nama_beasiswa', 'tahun_perolehan', 'min_ipk',  'kuota_utama', 'kuota_prodi',
         'jenis', 'kontrak_beasiswa', 'persyaratan'
     ];
 

@@ -2,13 +2,13 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Tambahkan Mahasiswa Non Bidikmisi</h5>
+                <h5 class="modal-title">Tambahkan Mahasiswa Bidikmisi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation" action="{{ route('mahasiswa.store') }}" method="POST"
+                <form class="needs-validation" action="{{ route('mahasiswa-bidikmisi.create') }}" method="POST"
                     enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -86,6 +86,12 @@
                             <input type="text" name="no_wa" class="form-control" placeholder="No WhatsApp" required>
                         </div>
                     </div>
+                    <!-- <div class="form-check form-check-flat form-check-primary">
+                        <label class="form-check-label">
+                            <input type="checkbox" name="mahasiswa_bidikmisi" value="1" class="form-check-input">
+                            Mahasiswa Bidikmisi
+                            <i class="input-helper"></i></label>
+                    </div> -->
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-success">Tambah</button>
                         <button type="button" class="btn btn-sm btn-secondary float-right"

@@ -70,7 +70,13 @@
                 <li class="nav-item {{ request()->is('admin/mahasiswa') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('mahasiswa.index') }}">
                         <i class="ti-agenda menu-icon"></i>
-                        <span class="menu-title">Data Mahasiswa</span>
+                        <span class="menu-title">Data Mahasiswa <br>Non Bidikmisi</span>
+                    </a>
+                </li>
+                <li class="nav-item {{ request()->is('admin/mahasiswa_bidikmisi') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('mahasiswa.bidikmisi') }}">
+                        <i class="ti-agenda menu-icon"></i>
+                        <span class="menu-title">Data Mahasiswa <br>Bidikmisi</span>
                     </a>
                 </li>
 

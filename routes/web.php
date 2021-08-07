@@ -49,6 +49,12 @@ Route::group(['middleware' => ['auth', 'akademik']],function(){
 Route::group(['middleware' => ['auth', 'adminprodi']],function(){
     Route::get('/admin-prodi', 'AdminprodiController@index')->name('admin-prodi.index');
     Route::resource('/admin/mahasiswa', 'MahasiswaController');
+    Route::get('/admin/mahasiswa_bidikmisi', 'MahasiswaController@mahasiswa_bidikmisi')->name('mahasiswa.bidikmisi');
+    Route::post('/admin/mahasiswa_bidikmisi/create', 'MahasiswaController@mahasiswa_bidikmisi_create')->name('mahasiswa-bidikmisi.create');
+    Route::get('/admin/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('mahasiswa-bidikmisi.profile');
+    Route::post('/admin/mahasiswa_bidikmisi/update/{id}', 'MahasiswaController@mahasiswa_bidikmisi_update')->name('mahasiswa-bidikmisi.update');
+    Route::post('/admin/mahasiswa_bidikmisi/delete/{id}', 'MahasiswaController@mahasiswa_bidikmisi_delete')->name('mahasiswa-bidikmisi.delete');
+    
     Route::resource('/admin/beasiswa', 'BeasiswaController');
     Route::get('/admin/pengumuman', 'AdminprodiController@pengumuman')->name('admin-prodi.pengumuman');
     Route::get('/admin/pengumuman/{id_pendaftaran}/detail', 'AdminprodiController@pengumuman_detail')->name('admin-prodi.pengumuman-detail');

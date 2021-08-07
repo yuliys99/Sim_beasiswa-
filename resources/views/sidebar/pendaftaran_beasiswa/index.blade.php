@@ -121,6 +121,7 @@
                         <div class="form-group">
                             <label for="persyaratan">File Persyaratan <a class="text-danger">*</a></label>
                             <small class="text-danger"><br> Format : (Nama_Beasiswa.rar) </small>
+                            <small class="text-danger"><br>maksimal 2 mb </small>
                             <input type="file" class="form-control" name="persyaratan" required>
                         </div>
                         <small>Untuk Persyaratan bisa dilihat dideskripsi<br></small>

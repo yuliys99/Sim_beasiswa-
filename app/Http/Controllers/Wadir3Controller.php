@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Beasiswa;
 use App\Mahasiswa;
+use PDF;
 use App\Pendaftaran;
 
 class Wadir3Controller extends Controller
@@ -26,9 +27,10 @@ class Wadir3Controller extends Controller
     public function laporan()
     {
         $data = Pendaftaran::where('status', 5)->orderBy('id', 'DESC')->get();
+        $beasiswa = Beasiswa::all();
         $bea = null;
         
-        return view('sidebar.laporan.index', compact('data', 'bea')); 
+        return view('sidebar.laporan.index', compact('data', 'bea', 'beasiswa')); 
     }
 
     public function filter_laporan(Request $request)

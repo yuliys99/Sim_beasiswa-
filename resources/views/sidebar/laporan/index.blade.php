@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-12">
                             @if(auth()->user()->id_role == 1)
-                            <form action="{{route('wadir.filterLaporan')}}" method="get">
+                            <form action="{{route('wadir3.filterLaporan')}}" method="get">
                             @endif
                             @if(auth()->user()->id_role == 2)
                             <form action="{{route('akademik.filterLaporan')}}" method="get">
@@ -75,6 +75,7 @@
                                         <tr style="text-align: center">
                                             <th>No</th>
                                             <th>Nama Mahasiswa</th>
+                                            <th>Prodi</th>
                                             <th>Nama Beasiswa</th>
                                             <th>IPK</th>
                                             <th>Semester</th>
@@ -90,6 +91,7 @@
                                         <tr>
                                             <td style="text-align:center">{{ $no++ }}</td>
                                             <td>{{ $data->mahasiswa->nama }}</td>
+                                            <td>{{ $data->mahasiswa->prodi->nama_prodi }}</td>
                                             <td>{{ $data->beasiswa->nama_beasiswa }}</td>
                                             <td>{{ $data->mahasiswa->ipk }}</td>
                                             <td>{{ $data->mahasiswa->semester }}</td>

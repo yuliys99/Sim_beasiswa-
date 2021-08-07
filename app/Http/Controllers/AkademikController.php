@@ -33,8 +33,9 @@ class AkademikController extends Controller
     public function calon_penerima_beasiswa()
     {
         $data = Pendaftaran::where('status', 3)->get();
+        $kuota = Beasiswa::all();
 
-        return view('sidebar.pengumuman.akademik-index', compact('data'));
+        return view('sidebar.pengumuman.akademik-index', compact('data', 'kuota'));
     }
 
     

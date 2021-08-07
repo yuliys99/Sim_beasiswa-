@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Prodi;
 use App\Mahasiswa;
 use App\DataRumah;
 use App\DataKeluarga;
@@ -47,7 +48,9 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+
+        return view('auth.register', compact('prodi'));
     }
 
     public function doRegister(Request $request)
@@ -78,6 +81,7 @@ class AuthController extends Controller
         $mahasiswa = new Mahasiswa;
         $mahasiswa->nama = $request->nama;
         $mahasiswa->nim = $request->nim;
+        $mahasiswa->id_prodi = $request->prodi;
         $mahasiswa->id_user = $lastid;
         $mahasiswa->save();
 

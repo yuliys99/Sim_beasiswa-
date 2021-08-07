@@ -15,7 +15,7 @@
                             {{-- <h5 class="font-weight-normal">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h5> --}}
                         </div>
                         <div class="col-2">
-                            @if(auth()->user()->id_role == 3 || auth()->user()->id_role == 2)
+                            @if(auth()->user()->id_role == 2)
                                 <div class="justify-content-end d-flex">
                                     <button data-toggle="modal" data-target="#modalCreate" class="btn btn-success btn-sm icon-plus menu-icon fa-2x float-right"
                                     title="Tambahkan disini" style="margin-left: auto;"></button>
@@ -61,7 +61,12 @@
                                             <th>Jenis</th>
                                             <th>Persyaratan</th>
                                             <th>Kontrak Beasiswa</th>
-                                            @if(auth()->user()->id_role == 3 || auth()->user()->id_role == 2)
+                                            @if(auth()->user()->id_role == 3)
+                                                <th>Kuota per-Prodi</th>
+                                            @endif
+                                            @if(auth()->user()->id_role == 2)
+                                                <th>Kuota per-Prodi</th>
+                                                <th>Kuota Utama</th>
                                                 <th>Status</th>
                                             @endif
                                         </tr>
@@ -79,7 +84,12 @@
                                                 <a target="_blank" href="{{$data->ambilFile()}}">{{$data->persyaratan}}</a>    
                                             </td>
                                             <td>{{ $data->kontrak_beasiswa }}</td>
+                                            @if(auth()->user()->id_role == 3)
+                                                <td>{{ $data->kuota_prodi }}</td>
+                                            @endif
                                             @if(auth()->user()->id_role == 2)
+                                                <td>{{ $data->kuota_prodi }}</td>
+                                                <td>{{ $data->kuota_utama }}</td>
                                                 <td width="15%">
                                                     <a href="{{ route('akademik-beasiswa.edit', ['akademik_beasiswa' => $data->id]) }}">
                                                         <button class="btn btn-warning ti-pencil-alt"
@@ -90,7 +100,7 @@
                                                     </a>
                                                 </td>
                                             @endif
-                                            @if(auth()->user()->id_role == 3)
+                                            <!-- @if(auth()->user()->id_role == 3)
                                                 <td width="15%">
                                                     <a href="{{ route('beasiswa.edit', ['beasiswa' => $data->id]) }}">
                                                         <button class="btn btn-warning ti-pencil-alt"
@@ -100,7 +110,7 @@
                                                         <button class="btn btn-danger ti-trash" title="Hapus"></button>
                                                     </a>
                                                 </td>
-                                            @endif
+                                            @endif -->
                                         </tr>
                                         @endforeach
                                     </tbody>

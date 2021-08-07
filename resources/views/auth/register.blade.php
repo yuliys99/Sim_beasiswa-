@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <h4>New here?</h4>
-    <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+    <h4>Daftar disini</h4>
+    <!-- <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6> -->
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -24,6 +24,15 @@
         </div>
         <div class="form-group">
             <input type="text" class="form-control form-control-lg rounded" name="nim" placeholder="Nim" required>
+        </div>
+        
+        <div class="form-group">
+            <select class="form-control form-control-lg rounded" name="prodi">
+                <option value="" selected disabled>- Prodi -</option>
+                @foreach ($prodi as $prodi)
+                <option value="{{ $prodi->id }}">{{ $prodi->nama_prodi }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <input type="email" class="form-control form-control-lg rounded" name="email" placeholder="Email" required>
@@ -47,7 +56,7 @@
             <button id="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit">SIGN UP</button>
         </div>
         <div class="text-center mt-4 font-weight-light">
-            Already have an account? <a href="{{ route('login') }}" class="text-primary">Login</a>
+            Apakah sudah memiliki akun? <a href="{{ route('login') }}" class="text-primary">Login</a>
         </div>
     </form>
 @endsection

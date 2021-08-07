@@ -2,7 +2,9 @@
 @section('content')
 <div class="content-wrapper" style="background-color: white">
 <div class="text-right mt-4 font-weight-light">
-            <button class="btn btn-primary"><a href="{{ route('login')}}" class="text-white">Log in</a></button>
+            <a href="{{ route('login')}}" class="text-white">
+                <button class="btn btn-primary">Log in</button>
+            </a>
         </div>
 
     <div class="row justify-content-center mt-5">

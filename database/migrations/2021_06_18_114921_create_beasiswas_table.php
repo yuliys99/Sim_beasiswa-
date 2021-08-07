@@ -20,6 +20,8 @@ class CreateBeasiswasTable extends Migration
             $table->integer('tahun_perolehan')->nullable();
             $table->double('min_ipk')->nullable();
             $table->string('jenis')->nullable();
+            $table->integer('kuota_utama')->nullable();
+            $table->integer('kuota_prodi')->nullable();
             $table->string('kontrak_beasiswa')->nullable();
             $table->string('persyaratan')->nullable();
             $table->timestamps();

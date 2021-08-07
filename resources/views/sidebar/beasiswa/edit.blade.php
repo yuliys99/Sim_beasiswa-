@@ -67,6 +67,20 @@
                             <input type="text" class="form-control" name="jenis" value="{{$data->jenis}}" placeholder="Jenis" required>
                         </div>
                         <div class="form-group">
+                            <label for="kuota_utama">Kuota Utama <a class="text-danger">*</a></label>
+                            <div class="input-group">
+                                <input name="kuota_utama" type="number" class="form-control" value="{{$data->kuota_utama}}" placeholder="Kuota Utama"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kuota_prodi">Kuota Prodi <a class="text-danger">*</a></label>
+                            <div class="input-group">
+                                <input name="kuota_prodi" type="number" class="form-control" value="{{$data->kuota_prodi}}" placeholder="Kuota Prodi"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="kontrak_beasiswa">Kontrak Beasiswa <a class="text-danger">*</a></label>
                             <input type="text" class="form-control" name="kontrak_beasiswa" value="{{$data->kontrak_beasiswa}}" placeholder="Kontrak Beasiswa" required>
                         </div>

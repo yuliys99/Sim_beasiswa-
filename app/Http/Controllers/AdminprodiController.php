@@ -92,8 +92,8 @@ class AdminprodiController extends Controller
     public function pengumuman()
     {
         $data = Pendaftaran::where('status', '<=', 3)->orderBy('id', 'DESC')->get();
-        
-        return view('sidebar.pengumuman.admin-index', compact('data'));
+        $kuota = Beasiswa::all();
+        return view('sidebar.pengumuman.admin-index', compact('data', 'kuota'));
     }
 
     public function pengumuman_edit(Request $request ,$id)

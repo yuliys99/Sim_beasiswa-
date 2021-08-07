@@ -49,6 +49,8 @@ class BeasiswaController extends Controller
             'tahun_perolehan' => $request->tahun_perolehan,
             'min_ipk' => $request->min_ipk,
             'jenis' => $request->jenis,
+            'kuota_utama' => $request->kuota_utama,
+            'kuota_prodi' => $request->kuota_prodi,
             'kontrak_beasiswa' => $request->kontrak_beasiswa,
         ]; 
 
@@ -106,6 +108,8 @@ class BeasiswaController extends Controller
             'tahun_perolehan' => $request->tahun_perolehan,
             'min_ipk' => $request->min_ipk,
             'jenis' => $request->jenis,
+            'kuota_utama' => $request->kuota_utama,
+            'kuota_prodi' => $request->kuota_prodi,
             'kontrak_beasiswa' => $request->kontrak_beasiswa,
         ];
 

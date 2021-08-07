@@ -1,7 +1,7 @@
 @extends('layouts.admin-master')
 
 @section('title')
-    Edit Data Mahasiswa Non Bidikmisi
+    Edit Data Mahasiswa Bidikmisi
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-10 stretch-card">
-                            <h3 class="font-weight-bold ml-4">Edit Data Mahasiswa Non Bidikmisi</h3>
+                            <h3 class="font-weight-bold ml-4">Edit Data Mahasiswa Bidikmisi </h3>
                             {{-- <h5 class="font-weight-normal">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h5> --}}
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <p class="card-description">
                         Basic form elements
                     </p> --}}
-                    <form class="forms-sample" method="POST" action="{{ route('mahasiswa.update', ['mahasiswa' => $data->id]) }}" enctype="multipart/form-data">
+                    <form class="forms-sample" method="POST" action="{{ route('mahasiswa-bidikmisi.update', ['id' => $data->id]) }}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         {{ method_field('PUT') }}
                         <div class="form-group">
@@ -105,7 +105,7 @@
                                 Mahasiswa Bidikmisi
                                 <i class="input-helper"></i></label>
                         </div> -->
-                        <a class="btn btn-light float-right" href="{{ route('mahasiswa.index') }}">Kembali</a>
+                        <a class="btn btn-light float-right" href="{{ route('mahasiswa.bidikmisi') }}">Kembali</a>
                         <button type="submit" class="btn btn-primary mr-2 float-right">Update</button>
                     </form>
                 </div>

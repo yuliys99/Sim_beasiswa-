@@ -42,6 +42,20 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="kuota_utama">Kuota Utama <a class="text-danger">*</a></label>
+                                <div class="input-group">
+                                    <input name="kuota_utama" type="number" class="form-control" placeholder="Kuota Utama"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="kuota_prodi">Kuota Prodi <a class="text-danger">*</a></label>
+                                <div class="input-group">
+                                    <input name="kuota_prodi" type="number" class="form-control" placeholder="Kuota Prodi"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="kontrak_beasiswa">Kontrak Beasiswa <a class="text-danger">*</a></label>
                                 <div class="input-group">
                                     <input type="text" name="kontrak_beasiswa" class="form-control" placeholder="Kontrak Beasiswa" required>
