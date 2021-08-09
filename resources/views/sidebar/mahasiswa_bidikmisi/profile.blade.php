@@ -109,7 +109,7 @@ Data Mahasiswa Bidikmisi
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email <a class="text-danger">*</a></label>
                         <input name="email" type="text" class="form-control" value="{{$data->user->email}}"
                             placeholder="Email" required>
                     </div>

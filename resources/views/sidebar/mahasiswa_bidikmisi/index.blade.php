@@ -15,11 +15,12 @@
                             {{-- <h5 class="font-weight-normal">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h5> --}}
                         </div>
                         <div class="col-2">
-                            <div class="justify-content-end d-flex">
-                                <button data-toggle="modal" data-target="#modalCreate" class="btn btn-success btn-sm icon-plus menu-icon fa-2x float-right"
-                                title="Tambahkan disini" style="margin-left: auto;"></button>
-
-                            </div>
+                            @if (auth()->user()->id_role == '3')
+                                <div class="justify-content-end d-flex">
+                                    <button data-toggle="modal" data-target="#modalCreate" class="btn btn-success btn-sm icon-plus menu-icon fa-2x float-right"
+                                    title="Tambahkan disini" style="margin-left: auto;"></button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -60,7 +61,9 @@
                                             <th>Semester</th>
                                             <th>IPK</th>
                                             <th>No WA</th>
-                                            <th>Status</th>
+                                            @if (auth()->user()->id_role == '3')
+                                                <th>Status</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -81,16 +84,18 @@
                                             <td>{{ $data->semester }}</td>
                                             <td>{{ $data->ipk }}</td>
                                             <td>{{ $data->no_wa }}</td>
-                                            <td style="width: 15%">
-                                                <a href="{{ route('mahasiswa-bidikmisi.profile', ['id' => $data->id]) }}">
-                                                    <button class="btn btn-warning ti-pencil-alt"
-                                                        title="Edit"></button>
-                                                </a>
-                                                <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$data->id}})" data-target="#DeleteModal">
-                                                    <button class="btn btn-danger ti-trash" title="Hapus"></button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                            @if (auth()->user()->id_role == '3')
+                                                <td style="width: 15%">
+                                                    <a href="{{ route('mahasiswa-bidikmisi.profile', ['id' => $data->id]) }}">
+                                                        <button class="btn btn-warning ti-pencil-alt"
+                                                            title="Edit"></button>
+                                                    </a>
+                                                    <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$data->id}})" data-target="#DeleteModal">
+                                                        <button class="btn btn-danger ti-trash" title="Hapus"></button>
+                                                    </a>
+                                                </td>
+                                            @endif
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

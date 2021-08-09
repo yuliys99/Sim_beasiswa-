@@ -20,7 +20,14 @@
                         <span class="menu-title">Data Beasiswa</span>
                     </a>
                 </li>
-                
+
+                <li class="nav-item {{ request()->is('wadir3/mahasiswa_bidikmisi') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('wadir3.bidikmisi') }}">
+                        <i class="ti-agenda menu-icon"></i>
+                        <span class="menu-title">Data Mahasiswa <br>Bidikmisi</span>
+                    </a>
+                </li>
+
                 <li class="nav-item {{ request()->is('wadir3/laporan-beasiswa') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('wadir3.laporan') }}">
                         <i class="icon-paper menu-icon"></i>
@@ -41,6 +48,13 @@
                     <a class="nav-link" href="{{ route('akademik-beasiswa.index') }}">
                         <i class="icon-paper menu-icon"></i>
                         <span class="menu-title">Data Beasiswa</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ request()->is('akademik/mahasiswa_bidikmisi') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('akademik.bidikmisi') }}">
+                        <i class="ti-agenda menu-icon"></i>
+                        <span class="menu-title">Data Mahasiswa <br>Bidikmisi</span>
                     </a>
                 </li>
 

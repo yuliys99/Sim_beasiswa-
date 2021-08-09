@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth', 'wadir3']],function(){
     Route::resource('/wadir3-beasiswa', 'BeasiswaController');
     Route::get('/wadir3/laporan-beasiswa', 'Wadir3Controller@laporan')->name('wadir3.laporan');
     
+    Route::get('/wadir3/mahasiswa_bidikmisi', 'MahasiswaController@mahasiswa_bidikmisi')->name('wadir3.bidikmisi');
+    Route::get('/wadir3/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('wadir3-bidikmisi.profile');
+
     Route::get('/wadir3/laporan', 'Wadir3Controller@filter_laporan')->name('wadir3.filterLaporan');
 });
 Route::group(['middleware' => ['auth', 'akademik']],function(){
@@ -43,6 +46,9 @@ Route::group(['middleware' => ['auth', 'akademik']],function(){
     Route::post('/akademik/calon_penerima_beasiswa/{id_pendaftaran}/edit', 'AkademikController@calon_penerima_beasiswa_edit')->name('akademik.calon_penerima_beasiswa-edit');
     Route::get('/akademik/laporan-beasiswa', 'AkademikController@laporan')->name('akademik.laporan');
     
+    Route::get('/akademik/mahasiswa_bidikmisi', 'MahasiswaController@mahasiswa_bidikmisi')->name('akademik.bidikmisi');
+    Route::get('/akademik/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('akademik-bidikmisi.profile');
+
     Route::get('/akademik/laporan', 'AkademikController@filter_laporan')->name('akademik.filterLaporan');
 });
 
