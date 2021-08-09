@@ -8,8 +8,13 @@
                 </button>
             </div>
             <div class="modal-body">
+                @if (auth()->user()->id_role == '3')
                 <form class="needs-validation" action="{{ route('mahasiswa-bidikmisi.create') }}" method="POST"
                     enctype="multipart/form-data">
+                @elseif(auth()->user()->id_role == '2')
+                    <form class="needs-validation" action="{{ route('akademik-bidikmisi.create') }}" method="POST"
+                        enctype="multipart/form-data">
+                @endif
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="nama">Nama <a class="text-danger">*</a></label>

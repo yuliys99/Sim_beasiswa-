@@ -47,14 +47,18 @@ Route::group(['middleware' => ['auth', 'akademik']],function(){
     Route::get('/akademik/laporan-beasiswa', 'AkademikController@laporan')->name('akademik.laporan');
     
     Route::get('/akademik/mahasiswa_bidikmisi', 'MahasiswaController@mahasiswa_bidikmisi')->name('akademik.bidikmisi');
+    Route::post('/akademik/mahasiswa_bidikmisi/create', 'MahasiswaController@mahasiswa_bidikmisi_create')->name('akademik-bidikmisi.create');
     Route::get('/akademik/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('akademik-bidikmisi.profile');
-
+    Route::post('/akademik/mahasiswa_bidikmisi/update/{id}', 'MahasiswaController@mahasiswa_bidikmisi_update')->name('akademik-bidikmisi.update');
+    Route::post('/akademik/mahasiswa_bidikmisi/delete/{id}', 'MahasiswaController@mahasiswa_bidikmisi_delete')->name('akademik-bidikmisi.delete');
+    
     Route::get('/akademik/laporan', 'AkademikController@filter_laporan')->name('akademik.filterLaporan');
 });
 
 Route::group(['middleware' => ['auth', 'adminprodi']],function(){
     Route::get('/admin-prodi', 'AdminprodiController@index')->name('admin-prodi.index');
     Route::resource('/admin/mahasiswa', 'MahasiswaController');
+
     Route::get('/admin/mahasiswa_bidikmisi', 'MahasiswaController@mahasiswa_bidikmisi')->name('mahasiswa.bidikmisi');
     Route::post('/admin/mahasiswa_bidikmisi/create', 'MahasiswaController@mahasiswa_bidikmisi_create')->name('mahasiswa-bidikmisi.create');
     Route::get('/admin/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('mahasiswa-bidikmisi.profile');

@@ -39,7 +39,7 @@ Data Mahasiswa Bidikmisi
 </div>
 @endif
 
-<form class="forms-sample" method="POST" action="{{ route('mahasiswa.update-profile', ['id' => $data->id]) }}"
+<form class="forms-sample" method="POST" action="{{ route('mahasiswa-bidikmisi.profile', ['id' => $data->id]) }}"
     enctype="multipart/form-data">
     {{csrf_field()}}
     {{ method_field('POST') }}

@@ -43,9 +43,13 @@
                     <p class="card-description">
                         Basic form elements
                     </p> --}}
+                    @if (auth()->user()->id_role == '3')
                     <form class="forms-sample" method="POST" action="{{ route('mahasiswa-bidikmisi.update', ['id' => $data->id]) }}" enctype="multipart/form-data">
+                    @elseif (auth()->user()->id_role == '2')
+                    <form class="forms-sample" method="POST" action="{{ route('akademik-bidikmisi.update', ['id' => $data->id]) }}" enctype="multipart/form-data">
+                    @endif
                         {{csrf_field()}}
-                        {{ method_field('PUT') }}
+                        {{ method_field('POST') }}
                         <div class="form-group">
                             <label for="nama">Nama <a class="text-danger">*</a></label>
                             <input type="text" class="form-control" name="nama" value="{{$data->nama}}" placeholder="Nama " required>

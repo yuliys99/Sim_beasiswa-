@@ -377,6 +377,11 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);
+        $data_rumah = DataRumah::find($mahasiswa->id);
+        $data_keluarga = DataKeluarga::find($mahasiswa->id);
+
+        $data_rumah->delete();
+        $data_keluarga->delete();
 
         $mahasiswa->delete();
         $user->delete();
@@ -388,7 +393,11 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);
+        $data_rumah = DataRumah::find($mahasiswa->id);
+        $data_keluarga = DataKeluarga::find($mahasiswa->id);
 
+        $data_rumah->delete();
+        $data_keluarga->delete();
         $mahasiswa->delete();
         $user->delete();
 
