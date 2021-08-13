@@ -434,7 +434,7 @@ class MahasiswaController extends Controller
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('sidebar.pendaftaran_beasiswa.index', compact(
-            'beasiswa', 'data_kurang',
+            'beasiswa', 'data_kurang', 'data_mahasiswa',
             'beep_profile', 'beep_datarumah', 'beep_datakeluarga'
         ));
     }

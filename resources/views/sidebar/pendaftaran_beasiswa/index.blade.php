@@ -43,8 +43,10 @@
             <div class="card">
                 <div class="card-body">
                     <p class="card-description mb-3">
-                        @if($data_kurang)
-                        <span class="alert alert-danger">Tolong lengkapi data anda terlebih dahulu !</span>
+                        @if($data_mahasiswa->status_bidikmisi == 1)
+                            <span class="alert alert-danger">Maaf, anda adalah Mahasiswa Bidikmisi !</span>
+                        @elseif($data_kurang)
+                            <span class="alert alert-danger">Tolong lengkapi data anda terlebih dahulu !</span>
                         @endif
                     </p>
                     <div class="row">
@@ -79,6 +81,10 @@
                                             <td>{{ $data->kontrak_beasiswa }}</td>
                                             <td width="15%" style="text-align: center">
                                                 @if($data_kurang)
+                                                <a href="javascript:;">
+                                                    <div class="badge badge-warning">-</div>
+                                                </a>
+                                                @elseif($data_mahasiswa->status_bidikmisi == 1)
                                                 <a href="javascript:;">
                                                     <div class="badge badge-warning">-</div>
                                                 </a>
