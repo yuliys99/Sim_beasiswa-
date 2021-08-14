@@ -48,6 +48,10 @@
                         @elseif($data_kurang)
                             <span class="alert alert-danger">Tolong lengkapi data anda terlebih dahulu !</span>
                         @endif
+
+                        @error('persyaratan')
+                            <span class="alert alert-danger">{{ $message }}</span>
+                        @enderror
                     </p>
                     <div class="row">
                         <div class="col-12">
@@ -75,7 +79,7 @@
                                             <td>{{ $data->tahun_perolehan }}</td>
                                             <td>{{ $data->min_ipk }}</td>
                                             <td>{{ $data->jenis }}</td>
-                                            <td>
+                                            <td width="5%">
                                                 <a target="_blank" href="{{$data->ambilFile()}}">{{$data->persyaratan}}</a>    
                                             </td>
                                             <td>{{ $data->kontrak_beasiswa }}</td>
@@ -128,7 +132,7 @@
                             <label for="persyaratan">File Persyaratan <a class="text-danger">*</a></label>
                             <small class="text-danger"><br> Format : (Nama_Beasiswa.rar) </small>
                             <small class="text-danger"><br>maksimal 2 mb </small>
-                            <input type="file" class="form-control" name="persyaratan" required>
+                            <input type="file" class="form-control @error('persyaratan') is-invalid @enderror" name="persyaratan" required autocomplete="persyaratan">
                         </div>
                         <small>Untuk Persyaratan bisa dilihat dideskripsi<br></small>
                         <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Batal</button>

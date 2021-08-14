@@ -255,6 +255,7 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);
         
+        $status_bidikmisi = $mahasiswa->status_bidikmisi;
         $data = [
             'nama' => $request->nama,
             'nim' => $request->nim,
@@ -266,7 +267,7 @@ class MahasiswaController extends Controller
             'no_hp' => $request->no_hp,
             'no_wa' => $request->no_wa,
             'id_prodi' => $request->prodi,
-            'status_bidikmisi' => 0
+            'status_bidikmisi' => $status_bidikmisi
         ];
 
         $data_user = [
@@ -441,6 +442,11 @@ class MahasiswaController extends Controller
 
     public function do_pendaftaran_beasiswa(Request $request, $id)
     {
+        
+        $this->validate($request, [
+            'persyaratan'=> ['required','mimetypes:zip,rar','max:2024'],
+        ]);
+
         $beasiswa = Beasiswa::find($id);
         $mahasiswa = Mahasiswa::where('id_user', $request->id_user)->first();
         $pendaftaran = Pendaftaran::where('id_beasiswa', $id)->where('id_mahasiswa', $mahasiswa->id)->first();
@@ -452,8 +458,11 @@ class MahasiswaController extends Controller
             return back()->with('error', 'Kamu sudah mendaftar beasiswa ini');
         } elseif ($mahasiswa_bidikmisi) {
             return back()->with('error', 'Kamu Mahasiswa Bidikmisi');
+        } elseif (!$request->persyaratan) {
+            return back()->with('error', 'File Persyaratan wajib diisi');
         } else{
-
+            
+            return $request;
             $data_rumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->first();
             $data_keluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->first();
             

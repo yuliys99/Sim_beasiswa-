@@ -83,6 +83,7 @@ class AuthController extends Controller
         $mahasiswa->nim = $request->nim;
         $mahasiswa->id_prodi = $request->prodi;
         $mahasiswa->id_user = $lastid;
+        $mahasiswa->status_bidikmisi = 0;
         $mahasiswa->save();
 
         DataRumah::create(['id_mahasiswa' => $mahasiswa->id]);
