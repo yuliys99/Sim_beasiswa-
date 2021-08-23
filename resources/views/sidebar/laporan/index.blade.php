@@ -45,7 +45,7 @@
                             <form action="{{route('akademik.filterLaporan')}}" method="get">
                             @endif
                             
-                                <div class="form-group ml-3" style="display:inline-block">
+                                <!-- <div class="form-group ml-3" style="display:inline-block">
                                     <div class="input-group-sm rounded">
                                         <select name="id_beasiswa" id="id_beasiswa" type="text" class="form-control">
                                             <option value="" selected disabled>- Beasiswa -</option>
@@ -55,17 +55,17 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <button id="button" type="submit" class="btn btn-primary btn-sm ml-3" title="Filter">
+                                <!-- <button id="button" type="submit" class="btn btn-primary btn-sm ml-3" title="Filter">
                                     Filter
                                     <i class="ti-filter btn-icon-append"></i>  
-                                </button>
+                                </button> -->
                                 
-                                <button id="button" type="submit" class="btn btn-danger btn-sm ml-3" target="_blank" name="cetakPdf" value="cetakPdf" title="Print">
+                                <!-- <button id="button" type="submit" class="btn btn-danger btn-sm ml-3" target="_blank" name="cetakPdf" value="cetakPdf" title="Print">
                                     Print
                                     <i class="ti-printer btn-icon-append"></i>  
-                                </button>
+                                </button> -->
 
                             </form>
 
@@ -104,11 +104,11 @@
                                                 @if ($data->status == 1)
                                                     <div class="badge badge-warning" style="color: white">Diperiksa</div>
                                                 @elseif ($data->status == 2)
-                                                    <div class="badge badge-danger">Gagal</div>
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 3)
                                                     <div class="badge badge-success">Direkomendasikan</div>
                                                 @elseif ($data->status == 4)
-                                                    <div class="badge badge-danger">Gagal</div>
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 5)
                                                     <div class="badge badge-success">Diterima</div>
                                                 @endif

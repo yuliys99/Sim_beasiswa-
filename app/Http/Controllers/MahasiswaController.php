@@ -255,6 +255,7 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);
         
+        $status_bidikmisi = $mahasiswa->status_bidikmisi;
         $data = [
             'nama' => $request->nama,
             'nim' => $request->nim,
@@ -266,7 +267,7 @@ class MahasiswaController extends Controller
             'no_hp' => $request->no_hp,
             'no_wa' => $request->no_wa,
             'id_prodi' => $request->prodi,
-            'status_bidikmisi' => 0
+            'status_bidikmisi' =>$status_bidikmisi
         ];
 
         $data_user = [
@@ -377,7 +378,11 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);
+        $data_rumah = DataRumah::find($mahasiswa->id);
+        $data_keluarga = DataKeluarga::find($mahasiswa->id);
 
+        $data_rumah->delete();
+        $data_keluarga->delete();
         $mahasiswa->delete();
         $user->delete();
 
@@ -388,7 +393,11 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($id);
         $user = User::find($mahasiswa->id_user);
+        $data_rumah = DataRumah::find($mahasiswa->id);
+        $data_keluarga = DataKeluarga::find($mahasiswa->id);
 
+        $data_rumah->delete();
+        $data_keluarga->delete();
         $mahasiswa->delete();
         $user->delete();
 
@@ -425,13 +434,18 @@ class MahasiswaController extends Controller
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('sidebar.pendaftaran_beasiswa.index', compact(
-            'beasiswa', 'data_kurang',
+            'beasiswa', 'data_kurang', 'data_mahasiswa',
             'beep_profile', 'beep_datarumah', 'beep_datakeluarga'
         ));
     }
 
     public function do_pendaftaran_beasiswa(Request $request, $id)
     {
+        
+        $this->validate($request, [
+            'persyaratan'=> ['required','mimes:zip,rar','max:2024'],
+        ]);
+
         $beasiswa = Beasiswa::find($id);
         $mahasiswa = Mahasiswa::where('id_user', $request->id_user)->first();
         $pendaftaran = Pendaftaran::where('id_beasiswa', $id)->where('id_mahasiswa', $mahasiswa->id)->first();
@@ -443,8 +457,12 @@ class MahasiswaController extends Controller
             return back()->with('error', 'Kamu sudah mendaftar beasiswa ini');
         } elseif ($mahasiswa_bidikmisi) {
             return back()->with('error', 'Kamu Mahasiswa Bidikmisi');
+        } elseif (!$request->persyaratan) {
+            return back()->with('error', 'File Persyaratan wajib diisi');
         } else{
 
+            
+            //return $request;
             $data_rumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->first();
             $data_keluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->first();
             

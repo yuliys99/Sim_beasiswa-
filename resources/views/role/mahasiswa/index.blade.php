@@ -12,8 +12,8 @@
                         <div class="card position-relative">
                             <div class="card-body">
                                 <h3 class="font-weight-bold">Dashboard Mahasiswa </h3>
-                                <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                        class="text-primary">3 unread alerts!</span></h6>
+                                    <!-- <h6 class="font-weight-normal mb-0">Kamu memiliki <span
+                                    class="text-primary">3 pemberitahuan belum dibaca!</span></h6> -->
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-4 stretch-card transparent">
+                            <!-- <div class="col-md-6 mb-4 stretch-card transparent">
                                 <div class="card card-dark-blue">
                                     <div class="card-body">
                                         <p class="mb-4">Total Mendaftar Beasiswa</p>
@@ -56,7 +56,7 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         {{-- <div class="row">
                             <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">

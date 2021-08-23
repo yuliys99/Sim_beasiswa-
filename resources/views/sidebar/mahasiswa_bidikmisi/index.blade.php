@@ -15,7 +15,7 @@
                             {{-- <h5 class="font-weight-normal">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h5> --}}
                         </div>
                         <div class="col-2">
-                            @if (auth()->user()->id_role == '3')
+                            @if (auth()->user()->id_role == '3'|| auth()->user()->id_role == '2')
                                 <div class="justify-content-end d-flex">
                                     <button data-toggle="modal" data-target="#modalCreate" class="btn btn-success btn-sm icon-plus menu-icon fa-2x float-right"
                                     title="Tambahkan disini" style="margin-left: auto;"></button>
@@ -61,7 +61,7 @@
                                             <th>Semester</th>
                                             <th>IPK</th>
                                             <th>No WA</th>
-                                            @if (auth()->user()->id_role == '3')
+                                            @if (auth()->user()->id_role == '3' || auth()->user()->id_role == '2')
                                                 <th>Status</th>
                                             @endif
                                         </tr>
@@ -94,6 +94,16 @@
                                                         <button class="btn btn-danger ti-trash" title="Hapus"></button>
                                                     </a>
                                                 </td>
+                                                @elseif (auth()->user()->id_role == '2')
+                                                <td style="width: 15%">
+                                                    <a href="{{ route('akademik-bidikmisi.profile', ['id' => $data->id]) }}">
+                                                        <button class="btn btn-warning ti-pencil-alt"
+                                                            title="Edit"></button>
+                                                    </a>
+                                                    <a href="javascript:;" data-toggle="modal" onclick="akademikdeleteData({{$data->id}})" data-target="#DeleteModal">
+                                                        <button class="btn btn-danger ti-trash" title="Hapus"></button>
+                                                    </a>
+                                                </td>
                                             @endif
                                             </tr>
                                         @endforeach
@@ -121,7 +131,7 @@
                     </div>
                     <div class="modal-body">
                         {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
+                        {{ method_field('POST') }}
                         <p>Apakah anda yakin ingin menghapus Beasiswa ini ?</p>
                         <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Batal</button>
                         <button type="submit" name="" class="btn btn-danger float-right mr-2" data-dismiss="modal" onclick="formSubmit()">Hapus</button>
@@ -142,7 +152,13 @@
             url = url.replace(':id', id);
             $("#deleteForm").attr('action', url);
         }
-
+        function akademikdeleteData(id) {
+            var id = id;
+            var url = '{{route("akademik-bidikmisi.delete", ":id") }}';
+            url = url.replace(':id', id);
+            $("#deleteForm").attr('action', url);
+        }
+        
         function formSubmit() {
             $("#deleteForm").submit();
         }

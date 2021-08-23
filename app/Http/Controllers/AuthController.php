@@ -76,14 +76,16 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ];
 
-        $lastid = User::create($data)->id;
+        $lastid = User::create($data)->id; //data yang diambil
 
-        $mahasiswa = new Mahasiswa;
+        $mahasiswa = new Mahasiswa; //nama tabel
         $mahasiswa->nama = $request->nama;
         $mahasiswa->nim = $request->nim;
         $mahasiswa->id_prodi = $request->prodi;
         $mahasiswa->id_user = $lastid;
+        $mahasiswa->status_bidikmisi = 0;
         $mahasiswa->save();
+        
 
         DataRumah::create(['id_mahasiswa' => $mahasiswa->id]);
         DataKeluarga::create(['id_mahasiswa' => $mahasiswa->id]);

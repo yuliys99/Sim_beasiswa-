@@ -13,7 +13,7 @@ Data Mahasiswa Non Bidikmisi
                     <div class="col-10 stretch-card">
                         <h3 class="font-weight-bold ml-4"> {{$data->nama}}
                             @if ($data->status_bidikmisi == 1)
-                            <p><br>Mahasiswa Non Bidikmisi</p>
+                            <p><br>Mahasiswa Bidikmisi</p>
                             @endif
                         </h3>
                     </div>

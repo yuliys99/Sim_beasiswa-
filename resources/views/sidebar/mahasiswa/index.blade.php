@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-10 stretch-card">
                             <h3 class="font-weight-bold ml-4">Data Mahasiswa Non Bidikmisi </h3>
-                            {{-- <h5 class="font-weight-normal">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h5> --}}
+                            {{-- <h5 class="font-weight-normal">Kamu memiliki <span class="text-primary">3 pemberitahuan belum dibaca!</span></h5> --}}
                         </div>
                         <div class="col-2">
                             <div class="justify-content-end d-flex">
@@ -37,7 +37,7 @@
         </div>
     @endif
     @error('ipk')
-        <div class="alert alert-danger">{{ $message }}</div>
+        <!-- <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     
     <div class="row">

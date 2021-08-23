@@ -88,7 +88,7 @@
                                                 @if ($data->status == 1)
                                                     <div class="badge badge-warning" style="color: white">Diperiksa</div>
                                                 @elseif ($data->status == 2)
-                                                    <div class="badge badge-danger">Gagal</div>
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 3)
                                                     <div class="badge badge-success">Direkomendasikan</div>
                                                 @endif
@@ -134,9 +134,9 @@
                         </div>
                         {{ csrf_field() }}
                         {{ method_field('POST') }}
-                        <p>Apakah anda yakin ingin Menerima Mahasiswa ini sebagai penerima Beasiswa ?</p>
+                        <p>Apakah anda yakin ingin Merekomendasikan Mahasiswa ini sebagai penerima Beasiswa ?</p>
                         <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Batal</button>
-                        <button type="submit" name="" class="btn btn-success float-right mr-2" data-dismiss="modal" onclick="formSubmitterima()">Terima</button>
+                        <button type="submit" name="" class="btn btn-success float-right mr-2" data-dismiss="modal" onclick="formSubmitterima()">Rekomendasikan</button>
                     </div>
                 </div>
             </form>

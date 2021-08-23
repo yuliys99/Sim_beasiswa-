@@ -45,7 +45,7 @@
                     </p> --}}
                     <form class="forms-sample" method="POST" action="{{ route('mahasiswa-bidikmisi.update', ['id' => $data->id]) }}" enctype="multipart/form-data">
                         {{csrf_field()}}
-                        {{ method_field('PUT') }}
+                        {{ method_field('POST') }}
                         <div class="form-group">
                             <label for="nama">Nama <a class="text-danger">*</a></label>
                             <input type="text" class="form-control" name="nama" value="{{$data->nama}}" placeholder="Nama " required>

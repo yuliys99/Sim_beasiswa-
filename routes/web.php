@@ -49,6 +49,9 @@ Route::group(['middleware' => ['auth', 'akademik']],function(){
     Route::get('/akademik/mahasiswa_bidikmisi', 'MahasiswaController@mahasiswa_bidikmisi')->name('akademik.bidikmisi');
     Route::get('/akademik/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('akademik-bidikmisi.profile');
 
+    Route::post('/akademik/mahasiswa_bidikmisi/update/{id}', 'MahasiswaController@mahasiswa_bidikmisi_update')->name('akademik-bidikmisi.update');
+    Route::post('/akademik/mahasiswa_bidikmisi/delete/{id}', 'MahasiswaController@mahasiswa_bidikmisi_delete')->name('akademik-bidikmisi.delete');
+
     Route::get('/akademik/laporan', 'AkademikController@filter_laporan')->name('akademik.filterLaporan');
 });
 
