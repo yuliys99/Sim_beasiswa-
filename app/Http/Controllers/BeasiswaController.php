@@ -52,6 +52,7 @@ class BeasiswaController extends Controller
             'kuota_utama' => $request->kuota_utama,
             'kuota_prodi' => $request->kuota_prodi,
             'kontrak_beasiswa' => $request->kontrak_beasiswa,
+            'batas_durasi' => $request->batas_durasi,
         ]; 
 
         if ($file = $request->file('persyaratan')) {
@@ -113,6 +114,10 @@ class BeasiswaController extends Controller
             'kontrak_beasiswa' => $request->kontrak_beasiswa,
         ];
 
+        if ($request->batas_durasi) {
+            $data['batas_durasi'] = $request->batas_durasi;
+        }
+        
         if ($file = $request->persyaratan){
 
             if ($beasiswa->persyaratan) {

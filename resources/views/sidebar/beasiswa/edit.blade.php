@@ -85,6 +85,12 @@
                             <input type="text" class="form-control" name="kontrak_beasiswa" value="{{$data->kontrak_beasiswa}}" placeholder="Kontrak Beasiswa" required>
                         </div>
                         <div class="form-group">
+                            <label for="batas_durasi">Batas Durasi <a class="text-danger">*</a></label>
+                            <div class="input-group">
+                                <input type="datetime-local" name="batas_durasi" class="form-control" placeholder="Batas Durasi" value="{{$data->batas_durasi}}" min="{{Carbon\Carbon::now()->format('Y-m-d\TH:i')}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="persyaratan">Persyaratan</label>
                             <input type="file" class="form-control" name="persyaratan">
                         </div>

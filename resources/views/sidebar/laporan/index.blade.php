@@ -38,12 +38,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            @if(auth()->user()->id_role == 1)
+                            {{-- @if(auth()->user()->id_role == 1)
                             <form action="{{route('wadir3.filterLaporan')}}" method="get">
-                            @endif
+                            @endif --}}
                             @if(auth()->user()->id_role == 2)
                             <form action="{{route('akademik.filterLaporan')}}" method="get">
-                            @endif
                             
                                 <div class="form-group ml-3" style="display:inline-block">
                                     <div class="input-group-sm rounded">
@@ -66,6 +65,8 @@
                                     Print
                                     <i class="ti-printer btn-icon-append"></i>  
                                 </button>
+
+                            @endif
 
                             </form>
 
@@ -104,11 +105,11 @@
                                                 @if ($data->status == 1)
                                                     <div class="badge badge-warning" style="color: white">Diperiksa</div>
                                                 @elseif ($data->status == 2)
-                                                    <div class="badge badge-danger">Gagal</div>
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 3)
                                                     <div class="badge badge-success">Direkomendasikan</div>
                                                 @elseif ($data->status == 4)
-                                                    <div class="badge badge-danger">Gagal</div>
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 5)
                                                     <div class="badge badge-success">Diterima</div>
                                                 @endif

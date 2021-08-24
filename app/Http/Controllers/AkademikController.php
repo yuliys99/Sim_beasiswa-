@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Beasiswa;
 use App\Mahasiswa;
 use App\Pendaftaran;
+use App\DataKHS;
 use PDF;
 
 class AkademikController extends Controller
@@ -32,7 +33,7 @@ class AkademikController extends Controller
 
     public function calon_penerima_beasiswa()
     {
-        $data = Pendaftaran::where('status', 3)->get();
+        $data = Pendaftaran::where('status', '>', 3)->get();
         $kuota = Beasiswa::all();
 
         return view('sidebar.pengumuman.akademik-index', compact('data', 'kuota'));
@@ -56,7 +57,9 @@ class AkademikController extends Controller
     {
         $pendaftaran = Pendaftaran::find($id);
 
-        return view('sidebar.pengumuman.detail', compact('pendaftaran'));
+        $data_khs = DataKHS::where('id_mahasiswa', $pendaftaran->id_mahasiswa)->orderBy('semester', 'ASC')->get();
+
+        return view('sidebar.pengumuman.detail', compact('pendaftaran', 'data_khs'));
     }
 
     public function laporan()

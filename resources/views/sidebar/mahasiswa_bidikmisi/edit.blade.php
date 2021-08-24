@@ -80,12 +80,12 @@
                             <input type="text" class="form-control" name="kelas" value="{{$data->kelas}}" placeholder="Kelas" required>
                         </div>
                         <div class="form-group">
-                            <label for="semester">Semester <a class="text-danger">*</a></label>
-                            <input type="text" class="form-control" name="semester" value="{{$data->semester}}" placeholder="Semester" required>
+                            <label for="semester">Semester Terakhir<a class="text-danger">*</a></label>
+                            <input type="text" class="form-control" name="semester" value="{{$data->semester}}" placeholder="Semester" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="ipk">IPK <a class="text-danger">*</a></label>
-                            <input type="text" class="form-control" name="ipk" value="{{$data->ipk}}" placeholder="IPK" required>
+                            <label for="ipk">IPK Terakhir<a class="text-danger">*</a></label>
+                            <input type="text" class="form-control" name="ipk" value="{{$data->ipk}}" placeholder="IPK" readonly>
                         </div>
                         <div class="form-group">
                             <label for="foto_khs">Foto KHS <a class="text-danger">*</a></label>

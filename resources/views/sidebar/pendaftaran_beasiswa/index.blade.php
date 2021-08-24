@@ -67,6 +67,7 @@
                                             <th>Jenis</th>
                                             <th>Persyaratan</th>
                                             <th>Kontrak Beasiswa</th>
+                                            <th>Batas Durasi Pendaftaran</th>
                                             <th>Daftar disini</th>
                                         </tr>
                                     </thead>
@@ -83,6 +84,7 @@
                                                 <a target="_blank" href="{{$data->ambilFile()}}">{{$data->persyaratan}}</a>    
                                             </td>
                                             <td>{{ $data->kontrak_beasiswa }}</td>
+                                            <td>{{ $data->batas_durasi }}</td>
                                             <td width="15%" style="text-align: center">
                                                 @if($data_kurang)
                                                 <a href="javascript:;">

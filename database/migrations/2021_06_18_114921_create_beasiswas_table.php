@@ -24,6 +24,7 @@ class CreateBeasiswasTable extends Migration
             $table->integer('kuota_prodi')->nullable();
             $table->string('kontrak_beasiswa')->nullable();
             $table->string('persyaratan')->nullable();
+            $table->datetime('batas_durasi')->nullable();
             $table->timestamps();
 
             // $table->foreign('id_kelas')

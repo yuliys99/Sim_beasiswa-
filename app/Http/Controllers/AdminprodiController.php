@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Beasiswa;
 use App\Mahasiswa;
 use App\Pendaftaran;
+use App\DataKHS;
 
 class AdminprodiController extends Controller
 {
@@ -112,6 +113,8 @@ class AdminprodiController extends Controller
     {
         $pendaftaran = Pendaftaran::find($id);
 
-        return view('sidebar.pengumuman.detail', compact('pendaftaran'));
+        $data_khs = DataKHS::where('id_mahasiswa', $pendaftaran->id_mahasiswa)->orderBy('semester', 'ASC')->get();
+
+        return view('sidebar.pengumuman.detail', compact('pendaftaran', 'data_khs'));
     }
 }

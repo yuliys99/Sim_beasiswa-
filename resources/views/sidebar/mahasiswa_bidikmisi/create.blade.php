@@ -56,7 +56,7 @@
                                 required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="semester">Semester <a class="text-danger">*</a></label>
                         <div class="input-group">
                             <input name="semester" type="text" class="form-control" placeholder="Semester" required>
@@ -73,7 +73,7 @@
                         <div class="input-group"> 
                             <input type="file" name="foto_khs" class="form-control" required>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <label for="alamat">Alamat <a class="text-danger">*</a></label>

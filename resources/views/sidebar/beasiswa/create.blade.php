@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="modalCreate">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Tambahkan Data Beasiswa</h5>
@@ -59,6 +59,12 @@
                                 <label for="kontrak_beasiswa">Kontrak Beasiswa <a class="text-danger">*</a></label>
                                 <div class="input-group">
                                     <input type="text" name="kontrak_beasiswa" class="form-control" placeholder="Kontrak Beasiswa" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="batas_durasi">Batas Durasi <a class="text-danger">*</a></label>
+                                <div class="input-group">
+                                    <input type="datetime-local" name="batas_durasi" class="form-control" placeholder="Batas Durasi" min="{{Carbon\Carbon::now()->format('Y-m-d\TH:i')}}" required>
                                 </div>
                             </div>
                             <div class="form-group">

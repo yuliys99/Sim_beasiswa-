@@ -12,8 +12,8 @@
                     <div class="card position-relative">
                         <div class="card-body">
                             <h3 class="font-weight-bold">Dashboard Admin Prodi </h3>
-                            <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                    class="text-primary">3 unread alerts!</span></h6>
+                            {{-- <h6 class="font-weight-normal mb-0">Kamu memiliki <span
+                                    class="text-primary"></span></h6> --}}
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -49,7 +49,7 @@
                         <div class="col-md-4 mb-4 stretch-card transparent">
                             <div class="card card-dark-blue">
                                 <div class="card-body">
-                                    <p class="mb-4">Jumlah Keseluruhan Mahasiswa</p>
+                                    <p class="mb-4">Jumlah Keseluruhan Mahasiswa yang memiliki akun</p>
                                     <p class="fs-30 mb-2">{{ $jumlah_mahasiswa }}</p>
                                     <a href="{{ route('mahasiswa.index') }}">
                                         <p style="color: white;">Klik disini untuk info lebih lanjut</p>

@@ -79,14 +79,14 @@ Data Mahasiswa Bidikmisi
                             placeholder="Kelas" required>
                     </div>
                     <div class="form-group">
-                        <label for="semester">Semester</label>
+                        <label for="semester">Semester Terakhir</label>
                         <input type="text" class="form-control" name="semester" value="{{$data->semester}}"
-                            placeholder="Semester" required>
+                            placeholder="Semester" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="ipk">IPK</label>
+                        <label for="ipk">IPK Terakhir</label>
                         <input type="text" class="form-control" name="ipk" value="{{$data->ipk}}" placeholder="IPK"
-                            required>
+                            readonly>
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
@@ -129,10 +129,6 @@ Data Mahasiswa Bidikmisi
                     </div>
                     <div class="form-group" style="text-align: center;">
                         <img src="{{$data->ambilGambarKHS()}}" style="max-height: 80%; max-width: 80%" alt="foto Khs">
-                    </div>
-                    <div class="form-group">
-                        <label for="foto_khs">Foto KHS</label>
-                        <input type="file" class="form-control" value="{{$data->foto_khs}}" name="foto_khs">
                     </div>
                     <div class="form-group">
                         <label for="password">Ubah Password</label>

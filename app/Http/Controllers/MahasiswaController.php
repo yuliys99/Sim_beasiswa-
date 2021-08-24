@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\File;
 
 use App\Mahasiswa;
@@ -13,6 +12,8 @@ use App\Prodi;
 use App\DataRumah;
 use App\DataKeluarga;
 use App\Pendaftaran;
+use Carbon\Carbon;
+use App\DataKHS;
 
 class MahasiswaController extends Controller
 {
@@ -34,12 +35,12 @@ class MahasiswaController extends Controller
         $beep_datarumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->whereNull('kepemilikan_rumah')->first();
         $beep_datakeluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->whereNull('nama_ayah')->first();
 
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
         $data_user = User::where('id', $id)->whereNull('email')->get();
 
         $beep_profile = collect();
-        $beep_profile->push($data_fotokhs, $data_ipk, $data_user);
+        $beep_profile->push( $data_ipk, $data_user);
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('role.mahasiswa.index', compact(
@@ -53,12 +54,12 @@ class MahasiswaController extends Controller
         $data = Mahasiswa::where('id_user', $id)->first();
         $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
 
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
 
         $data_user = User::where('id', $id)->whereNull('email')->get();
         $data_kurang = collect();
-        $data_kurang->push($data_fotokhs, $data_ipk, $data_user);
+        $data_kurang->push( $data_ipk, $data_user);
         $data_kurang = $data_kurang->collapse()->all();
 
         $id = auth()->user()->id;
@@ -66,12 +67,12 @@ class MahasiswaController extends Controller
         $beep_datarumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->whereNull('kepemilikan_rumah')->first();
         $beep_datakeluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->whereNull('nama_ayah')->first();
 
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
         $data_user = User::where('id', $id)->whereNull('email')->get();
 
         $beep_profile = collect();
-        $beep_profile->push($data_fotokhs, $data_ipk, $data_user);
+        $beep_profile->push( $data_ipk, $data_user);
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('sidebar.mahasiswa.profile', compact(
@@ -147,11 +148,11 @@ class MahasiswaController extends Controller
         ];
 
         
-        if ($file = $request->file('foto_khs')) {
-            $nama_file = "Foto_khs_".time(). ".jpeg";
-            $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
-            $data['foto_khs'] = $nama_file;
-        }
+        // if ($file = $request->file('foto_khs')) {
+        //     $nama_file = "Foto_khs_".time(). ".jpeg";
+        //     $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
+        //     $data['foto_khs'] = $nama_file;
+        // }
 
         $last_id = Mahasiswa::create($data)->id;
         DataRumah::create(['id_mahasiswa' => $last_id]);
@@ -196,11 +197,11 @@ class MahasiswaController extends Controller
         ];
 
         
-        if ($file = $request->file('foto_khs')) {
-            $nama_file = "Foto_khs_".time(). ".jpeg";
-            $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
-            $data['foto_khs'] = $nama_file;
-        }
+        // if ($file = $request->file('foto_khs')) {
+        //     $nama_file = "Foto_khs_".time(). ".jpeg";
+        //     $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
+        //     $data['foto_khs'] = $nama_file;
+        // }
 
         $last_id = Mahasiswa::create($data)->id;
         DataRumah::create(['id_mahasiswa' => $last_id]);
@@ -292,16 +293,16 @@ class MahasiswaController extends Controller
         }
 
         
-        if ($file = $request->foto_khs){
+        // if ($file = $request->foto_khs){
 
-            if ($mahasiswa->foto_khs) {
-                File::delete('Images/Mahasiswa/KHS/' . $mahasiswa->foto_khs);
-            }
+        //     if ($mahasiswa->foto_khs) {
+        //         File::delete('Images/Mahasiswa/KHS/' . $mahasiswa->foto_khs);
+        //     }
 
-            $nama_file = "Foto_khs_".time(). ".jpeg";
-            $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
-            $data['foto_khs'] = $nama_file;
-        }
+        //     $nama_file = "Foto_khs_".time(). ".jpeg";
+        //     $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
+        //     $data['foto_khs'] = $nama_file;
+        // }
 
         $user->update($data_user);
         $mahasiswa->update($data);
@@ -350,16 +351,16 @@ class MahasiswaController extends Controller
         }
 
         
-        if ($file = $request->foto_khs){
+        // if ($file = $request->foto_khs){
 
-            if ($mahasiswa->foto_khs) {
-                File::delete('Images/Mahasiswa/KHS/' . $mahasiswa->foto_khs);
-            }
+        //     if ($mahasiswa->foto_khs) {
+        //         File::delete('Images/Mahasiswa/KHS/' . $mahasiswa->foto_khs);
+        //     }
 
-            $nama_file = "Foto_khs_".time(). ".jpeg";
-            $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
-            $data['foto_khs'] = $nama_file;
-        }
+        //     $nama_file = "Foto_khs_".time(). ".jpeg";
+        //     $file->move(public_path() . '/Images/Mahasiswa/KHS/', $nama_file);  
+        //     $data['foto_khs'] = $nama_file;
+        // }
 
         $user->update($data_user);
         $mahasiswa->update($data);
@@ -380,6 +381,7 @@ class MahasiswaController extends Controller
         $user = User::find($mahasiswa->id_user);
         $data_rumah = DataRumah::find($mahasiswa->id);
         $data_keluarga = DataKeluarga::find($mahasiswa->id);
+        $data_khs = DataKHS::where('id_mahasiswa', $mahasiswa->id)->delete();
 
         $data_rumah->delete();
         $data_keluarga->delete();
@@ -404,18 +406,17 @@ class MahasiswaController extends Controller
 
         return redirect()->back()->with('success', 'Berhasil Menghapus Data');
     }
-
+    
     public function pendaftaran_beasiswa($id)
     {
         $beasiswa = Beasiswa::orderBy('nama_beasiswa', 'ASC')->get();
-        
         $data_mahasiswa = Mahasiswa::where('id_user', $id)->first();
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
 
         $data_user = User::where('id', $id)->whereNull('email')->get();
         $data_kurang = collect();
-        $data_kurang->push($data_fotokhs, $data_ipk, $data_user);
+        $data_kurang->push( $data_ipk, $data_user);
         $data_kurang = $data_kurang->collapse()->all();
 
         $data_rumah = DataRumah::where('id_mahasiswa', $data_mahasiswa->id)->first();
@@ -426,12 +427,12 @@ class MahasiswaController extends Controller
         $beep_datarumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->whereNull('kepemilikan_rumah')->first();
         $beep_datakeluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->whereNull('nama_ayah')->first();
 
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
         $data_user = User::where('id', $id)->whereNull('email')->get();
 
         $beep_profile = collect();
-        $beep_profile->push($data_fotokhs, $data_ipk, $data_user);
+        $beep_profile->push($data_ipk, $data_user);
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('sidebar.pendaftaran_beasiswa.index', compact(
@@ -444,15 +445,19 @@ class MahasiswaController extends Controller
     {
         
         $this->validate($request, [
-            'persyaratan'=> ['required','mimetypes:zip,rar','max:2024'],
+            'persyaratan'=> ['required','mimes:zip,rar','max:2024'],
         ]);
 
+        $now = Carbon::now();
         $beasiswa = Beasiswa::find($id);
         $mahasiswa = Mahasiswa::where('id_user', $request->id_user)->first();
         $pendaftaran = Pendaftaran::where('id_beasiswa', $id)->where('id_mahasiswa', $mahasiswa->id)->first();
         $mahasiswa_bidikmisi = Mahasiswa::where('id_user', $request->id_user)->where('status_bidikmisi', 1)->first();
+        $batas_durasi = Beasiswa::where('id', $id)->where('batas_durasi', '<', $now)->first();
 
-        if ($mahasiswa->ipk <= $beasiswa->min_ipk) {
+        if ($batas_durasi) {
+            return back()->with('error', 'Mohon maaf, Pendaftaran Beasiswa ini sudah ditutup');
+        } elseif ($mahasiswa->ipk <= $beasiswa->min_ipk) {
             return back()->with('error', 'Mohon maaf, Ipk mu tidak memenuhi syarat untuk mendaftar beasiswa ini');
         } elseif ($pendaftaran) {
             return back()->with('error', 'Kamu sudah mendaftar beasiswa ini');
@@ -462,7 +467,7 @@ class MahasiswaController extends Controller
             return back()->with('error', 'File Persyaratan wajib diisi');
         } else{
             
-            return $request;
+            // return $request;
             $data_rumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->first();
             $data_keluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->first();
             
@@ -496,12 +501,12 @@ class MahasiswaController extends Controller
         $beep_datarumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->whereNull('kepemilikan_rumah')->first();
         $beep_datakeluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->whereNull('nama_ayah')->first();
 
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
         $data_user = User::where('id', $id)->whereNull('email')->get();
 
         $beep_profile = collect();
-        $beep_profile->push($data_fotokhs, $data_ipk, $data_user);
+        $beep_profile->push( $data_ipk, $data_user);
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('sidebar.pengumuman.index', compact(

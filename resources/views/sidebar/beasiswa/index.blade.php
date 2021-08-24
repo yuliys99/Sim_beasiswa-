@@ -61,6 +61,7 @@
                                             <th>Jenis</th>
                                             <th>Persyaratan</th>
                                             <th>Kontrak Beasiswa</th>
+                                            <th>Batas Durasi Pendaftaran</th>
                                             @if(auth()->user()->id_role == 3)
                                                 <th>Kuota per-Prodi</th>
                                             @endif
@@ -84,6 +85,7 @@
                                                 <a target="_blank" href="{{$data->ambilFile()}}">{{$data->persyaratan}}</a>    
                                             </td>
                                             <td>{{ $data->kontrak_beasiswa }}</td>
+                                            <td>{{ $data->batas_durasi }}</td>
                                             @if(auth()->user()->id_role == 3)
                                                 <td>{{ $data->kuota_prodi }}</td>
                                             @endif

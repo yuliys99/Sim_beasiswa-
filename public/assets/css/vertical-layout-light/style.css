@@ -15773,7 +15773,7 @@ button.bg-light:focus,
 }
 
 .bg-dark, .settings-panel .color-tiles .tiles.dark {
-  background-color: #282f3a !important;
+  background-color: #4B49AC !important;
 }
 
 a.bg-dark:hover, .settings-panel .color-tiles a.tiles.dark:hover, a.bg-dark:focus, .settings-panel .color-tiles a.tiles.dark:focus,
@@ -28832,7 +28832,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper .brand-logo-mini img {
-  width: calc(70px - 30px);
+  /* width: calc(70px - 30px); */
   max-width: 100%;
   margin: auto;
 }

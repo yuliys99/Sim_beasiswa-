@@ -168,6 +168,10 @@
                                 {{ request()->is('datakeluarga-mahasiswa/'. auth()->user()->id) ? 'active' : '' }}"> <a class="nav-link"
                                 href="{{ route('datakeluarga-mahasiswa.show' , auth()->user()->id) }}">Data Keluarga</a>
                             </li>
+                            <li class="nav-item 
+                                {{ request()->is('datakhs-mahasiswa/'. auth()->user()->id) ? 'active' : '' }}"> <a class="nav-link"
+                                href="{{ route('datakhs-mahasiswa.show' , auth()->user()->id) }}">Data KHS</a>
+                            </li>
                         </ul>
                     </div>
                 </li>

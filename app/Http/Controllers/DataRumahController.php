@@ -61,12 +61,12 @@ class DataRumahController extends Controller
         $beep_datarumah = DataRumah::where('id_mahasiswa', $mahasiswa->id)->whereNull('kepemilikan_rumah')->first();
         $beep_datakeluarga = DataKeluarga::where('id_mahasiswa', $mahasiswa->id)->whereNull('nama_ayah')->first();
 
-        $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
+        // $data_fotokhs = Mahasiswa::where('id_user', $id)->whereNull('foto_khs')->get();
         $data_ipk = Mahasiswa::where('id_user', $id)->whereNull('ipk')->get();
         $data_user = User::where('id', $id)->whereNull('email')->get();
 
         $beep_profile = collect();
-        $beep_profile->push($data_fotokhs, $data_ipk, $data_user);
+        $beep_profile->push( $data_ipk, $data_user);
         $beep_profile = $beep_profile->collapse()->all();
 
         return view('sidebar.data_rumah.index', compact(

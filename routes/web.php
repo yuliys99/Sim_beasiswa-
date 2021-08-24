@@ -82,5 +82,6 @@ Route::group(['middleware' => ['auth', 'mahasiswa']],function(){
     Route::resource('/datakeluarga-mahasiswa', 'DataKeluargaController');
     Route::resource('/datarumah-mahasiswa', 'DataRumahController');
     Route::get('/pengumuman-mahasiswa/{id}', 'MahasiswaController@pengumuman')->name('mahasiswa.pengumuman');
+    Route::resource('/datakhs-mahasiswa', 'DataKhsController');
     
 });

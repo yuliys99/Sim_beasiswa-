@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $data = Beasiswa::all();
-        return view('home', compact('data'));
+        return view('landingpage', compact('data'));
     }
 
     public function admin()

@@ -88,9 +88,11 @@
                                                 @if ($data->status == 1)
                                                     <div class="badge badge-warning" style="color: white">Diperiksa</div>
                                                 @elseif ($data->status == 2)
-                                                    <div class="badge badge-danger">Gagal</div>
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 3)
                                                     <div class="badge badge-success">Direkomendasikan</div>
+                                                @elseif ($data->status == 4)
+                                                    <div class="badge badge-danger">Ditolak</div>
                                                 @elseif ($data->status == 5)
                                                     <div class="badge badge-success">Diterima</div>
                                                 @endif
