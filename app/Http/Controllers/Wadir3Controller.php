@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Beasiswa;
 use App\Mahasiswa;
 use PDF;
 use App\Pendaftaran;
+use DB;
 
 class Wadir3Controller extends Controller
 {
@@ -17,16 +19,24 @@ class Wadir3Controller extends Controller
      */
     public function index()
     {
+        $user = User::find('1');
         $info_beasiswa = Beasiswa::all()->count();
         $jumlah_mahasiswa = Mahasiswa::all()->count();
         $mahasiswa_penerima_beasiswa = Pendaftaran::where('status', 5)->count();
         
-        return view('role.wadir3.index', compact('info_beasiswa', 'jumlah_mahasiswa', 'mahasiswa_penerima_beasiswa'));
+        return view('role.wadir3.index', compact('user', 'info_beasiswa', 'jumlah_mahasiswa', 'mahasiswa_penerima_beasiswa'));
     }
 
     public function laporan()
     {
-        $data = Pendaftaran::where('status', 5)->orderBy('id', 'DESC')->get();
+        $data = DB::table('pendaftaran')
+            ->join('mahasiswa', 'pendaftaran.id_mahasiswa', '=', 'mahasiswa.id')
+            ->join('beasiswa', 'pendaftaran.id_beasiswa', '=', 'beasiswa.id')
+            ->join('prodi', 'mahasiswa.id_prodi', '=', 'prodi.id')
+            ->select('pendaftaran.*', 'prodi.nama_prodi', 'beasiswa.nama_beasiswa', 'mahasiswa.nama', 'mahasiswa.ipk', 'mahasiswa.semester', 'mahasiswa.nim')
+            ->orderBy('pendaftaran.id', 'DESC')->get();
+        
+        
         $beasiswa = Beasiswa::all();
         $bea = null;
         
@@ -105,9 +115,15 @@ class Wadir3Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_profile(Request $request)
     {
-        //
+        $user = User::find('1');
+
+        $user->update([
+            'nama' => $request->nama
+        ]);
+
+        return back()->with('success', 'Berhasil merubah data');
     }
 
     /**

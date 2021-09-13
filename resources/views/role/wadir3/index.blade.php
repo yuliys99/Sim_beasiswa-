@@ -12,8 +12,8 @@
                     <div class="card position-relative">
                         <div class="card-body">
                             <h3 class="font-weight-bold">Dashboard Wadir III </h3>
-                            <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                    class="text-primary">3 unread alerts!</span></h6>
+                            {{-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
+                                    class="text-primary">3 unread alerts!</span></h6> --}}
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -24,6 +24,33 @@
                                 {{ session('error') }}
                             </div>
                         @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin transparent">
+            <div class="card position-relative">
+                <div class="card-body">
+                    <div class="stretch-card transparent">
+                        <div class="card-body">
+                            <form class="forms-sample" method="POST" action="{{ route('wadir3.update-profile')}}"
+                            enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            {{ method_field('POST') }}
+                            
+                                <h4 class="card-title">Nama Wadir III beserta gelar</h4>
+                                <div class="alert alert-primary">Isikan sesuai yang tertera dalam SK Poliwangi !</div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="nama" value="{{$user->nama}}" placeholder="Nama "
+                                        required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Update</button>
+
+                            </form>
                         </div>
                     </div>
                 </div>

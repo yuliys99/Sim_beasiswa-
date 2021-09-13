@@ -84,6 +84,12 @@ class DataKhsController extends Controller
                 'ipk' => $data_khs->ipk,
                 'semester' => $data_khs->semester,
             ]);
+        } else {
+            $mahasiswa->update([
+                'ipk' => null,
+                'semester' => null,
+            ]);
+
         }
 
         $data = DataKHS::where('id_mahasiswa', $mahasiswa->id)->orderBy('semester', 'ASC')->get();

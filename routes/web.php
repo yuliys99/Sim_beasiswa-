@@ -36,7 +36,9 @@ Route::group(['middleware' => ['auth', 'wadir3']],function(){
     Route::get('/wadir3/mahasiswa_bidikmisi/profile/{id}', 'MahasiswaController@mahasiswa_bidikmisi_profile')->name('wadir3-bidikmisi.profile');
 
     Route::get('/wadir3/laporan', 'Wadir3Controller@filter_laporan')->name('wadir3.filterLaporan');
+    Route::post('/wadir3/update', 'Wadir3Controller@update_profile')->name('wadir3.update-profile');
 });
+
 Route::group(['middleware' => ['auth', 'akademik']],function(){
     Route::get('/akademik', 'AkademikController@index')->name('akademik.index');
     // Route::resource('/akademik-mahasiswa', 'MahasiswaController');

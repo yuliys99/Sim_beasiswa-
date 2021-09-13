@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Beasiswa;
 use App\Mahasiswa;
 use App\Pendaftaran;
 use App\DataKHS;
+use App\Prodi;
+use App\Semester;
 use PDF;
+use DB;
 
 class AkademikController extends Controller
 {
@@ -33,7 +37,7 @@ class AkademikController extends Controller
 
     public function calon_penerima_beasiswa()
     {
-        $data = Pendaftaran::where('status', '>', 3)->get();
+        $data = Pendaftaran::where('status', '>=', 3)->get();
         $kuota = Beasiswa::all();
 
         return view('sidebar.pengumuman.akademik-index', compact('data', 'kuota'));
@@ -64,18 +68,60 @@ class AkademikController extends Controller
 
     public function laporan()
     {
-        $data = Pendaftaran::where('status', 5)->orderBy('id', 'DESC')->get();
+        $data = DB::table('pendaftaran')
+            ->join('mahasiswa', 'pendaftaran.id_mahasiswa', '=', 'mahasiswa.id')
+            ->join('beasiswa', 'pendaftaran.id_beasiswa', '=', 'beasiswa.id')
+            ->join('prodi', 'mahasiswa.id_prodi', '=', 'prodi.id')
+            ->select('pendaftaran.*', 'prodi.nama_prodi', 'beasiswa.nama_beasiswa', 'mahasiswa.nama', 'mahasiswa.ipk', 'mahasiswa.semester', 'mahasiswa.nim')
+            ->orderBy('pendaftaran.id', 'DESC')->get();
+        
         $beasiswa = Beasiswa::all();
+        $prodi = Prodi::all();
+        $semester = Semester::all();
         $bea = null;
-        return view('sidebar.laporan.index', compact('data', 'beasiswa', 'bea')); 
+        $prod = null;
+        $smstr = null;
+
+        return view('sidebar.laporan.index', compact('data', 'beasiswa', 
+                        'bea', 'prodi', 'semester', 'prod', 'smstr')); 
     }
 
     public function filter_laporan(Request $request)
     {
-        $data = Pendaftaran::where('status', 5)->where('id_beasiswa', 'like', '%' . $request->id_beasiswa . '%')->orderBy('id', 'DESC')->get();
+        if ($request->id_beasiswa == null) {
+            $request->id_beasiswa = "";
+        }
+        if ($request->id_prodi == null) {
+            $request->id_prodi = "";
+        }
+        if ($request->semester == null) {
+            $request->semester = "";
+        }
+
+        $data = DB::table('pendaftaran')
+            ->join('mahasiswa', 'pendaftaran.id_mahasiswa', '=', 'mahasiswa.id')
+            ->join('beasiswa', 'pendaftaran.id_beasiswa', '=', 'beasiswa.id')
+            ->join('prodi', 'mahasiswa.id_prodi', '=', 'prodi.id')
+            ->where('id_beasiswa', 'like', '%' . $request->id_beasiswa . '%')
+            ->where('mahasiswa.id_prodi', 'like', '%' . $request->id_prodi . '%')
+            ->where('mahasiswa.semester', 'like', '%' . $request->semester . '%')
+            ->select('pendaftaran.*', 'prodi.nama_prodi', 'beasiswa.nama_beasiswa', 'mahasiswa.nama', 'mahasiswa.ipk', 'mahasiswa.semester', 'mahasiswa.nim')
+            ->orderBy('pendaftaran.id', 'DESC')->get();
+
         $beasiswa = Beasiswa::all();
+        $prodi = Prodi::all();
+        $semester = Semester::all();
+        $wadir3 = User::find(1);
         $bea = $request->id_beasiswa;
-        
+        $prod = $request->id_prodi;
+        $smstr = $request->semester;
+        $data = [
+            'datas' => $data,
+            'wadir3' => $wadir3
+        ];
+
+        // return $data['data'];
+
         if($request->input('cetakPdf')){
 
             view()->share('data',$data);
@@ -89,7 +135,8 @@ class AkademikController extends Controller
             return $pdf->stream('sidebar/laporan/cetak_pdf', array('Attachment' => 0));
         }
 
-        return view('sidebar.laporan.index', compact('data', 'beasiswa', 'bea')); 
+        return view('sidebar.laporan.index', compact('data', 'beasiswa', 'bea', 'prodi',
+                            'prod', 'semester', 'smstr')); 
     }
 
 

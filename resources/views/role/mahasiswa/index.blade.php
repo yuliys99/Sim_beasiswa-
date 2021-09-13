@@ -12,8 +12,8 @@
                         <div class="card position-relative">
                             <div class="card-body">
                                 <h3 class="font-weight-bold">Dashboard Mahasiswa </h3>
-                                <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                        class="text-primary">3 unread alerts!</span></h6>
+                                {{-- <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
+                                        class="text-primary">3 unread alerts!</span></h6> --}}
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}

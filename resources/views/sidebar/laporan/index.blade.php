@@ -56,6 +56,30 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group ml-3" style="display:inline-block">
+                                    <div class="input-group-sm rounded">
+                                        <select name="id_prodi" id="id_prodi" type="text" class="form-control">
+                                            <option value="" selected disabled>- Prodi -</option>
+                                            <option value="">Semua</option>
+                                            @foreach($prodi as $datas)
+                                            <option value="{{$datas->id}}" @if($datas->id == $prod) {{'selected="selected"'}} @endif >{{$datas->nama_prodi}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ml-3" style="display:inline-block">
+                                    <div class="input-group-sm rounded">
+                                        <select name="semester" id="semester" type="text" class="form-control">
+                                            <option value="" selected disabled>- Semester -</option>
+                                            <option value="">Semua</option>
+                                            @foreach($semester as $datas)
+                                            <option value="{{$datas->id}}" @if($datas->id == $smstr) {{'selected="selected"'}} @endif >{{$datas->semester}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <button id="button" type="submit" class="btn btn-primary btn-sm ml-3" title="Filter">
                                     Filter
                                     <i class="ti-filter btn-icon-append"></i>  
@@ -91,13 +115,13 @@
                                         @foreach ($data as $data)
                                         <tr>
                                             <td style="text-align:center">{{ $no++ }}</td>
-                                            <td>{{ $data->mahasiswa->nama }}</td>
-                                            <td>{{ $data->mahasiswa->prodi->nama_prodi }}</td>
-                                            <td>{{ $data->beasiswa->nama_beasiswa }}</td>
-                                            <td>{{ $data->mahasiswa->ipk }}</td>
-                                            <td>{{ $data->mahasiswa->semester }}</td>
+                                            <td>{{ $data->nama }}</td>
+                                            <td>{{ $data->nama_prodi }}</td>
+                                            <td>{{ $data->nama_beasiswa }}</td>
+                                            <td>{{ $data->ipk }}</td>
+                                            <td>{{ $data->semester }}</td>
                                             <td>
-                                                <a target="_blank" href="{{$data->ambilFilePersyaratan()}}">{{$data->persyaratan}}</a>    
+                                                <a target="_blank" href="{{ asset('File/Mahasiswa/Persyaratan/'. $data->persyaratan)}}">{{$data->persyaratan}}</a>    
                                             </td>
                                             <td>{{ $data->created_at }}</td>
                                             {{-- <td>{{ $data->updated_at->diffForHumans() }}</td> --}}

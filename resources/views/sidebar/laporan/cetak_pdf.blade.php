@@ -9,12 +9,20 @@
         .atas{
             height: 116px;
         }
+        .judul{
+            margin-bottom: 30px;
+        }
         .tengah{
             position: absolute;
             width: 320px; 
             height: 320px;
-            margin-left: 18.5%; 
+            margin-left: 18.6%; 
             margin-top: 400px;
+        }
+        .mengetahui{
+            
+            margin-top: 50px;
+            margin-right: 65px;
         }
         .garis{
             height: 1px;
@@ -71,11 +79,8 @@ function tgl_indo($tanggal){
     <div class="garis2"></div>
 
 <body>
-    <h3 style="text-align: center; margin-top:40px"> Data Mahasiswa Penerima Beasiswa</h3>
-    <div class="tengah">
-        <img class="tengah" src="{{public_path('assets/images/kop.png')}}" style="opacity: 0.1;">
-    </div>
-    <table align="center" width="95%" border="0.2" style="margin-top: -35%; border-collapse: collapse;">
+    <h3 class="judul" style="text-align: center; margin-top:40px"> Data Mahasiswa Penerima Beasiswa</h3>
+    <table align="center" width="95%" border="0.2" style=" border-collapse: collapse;">
         <thead style="font-size: 14px;">
             <tr>				
                 <th width="5%">No</th>
@@ -88,17 +93,34 @@ function tgl_indo($tanggal){
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $a)
+            @foreach($data['datas'] as $a)
             <tr align="center">
                 <td style="font-size: 12px;">{{$no++}}</td>
-                <td style="font-size: 12px;">{{$a->beasiswa->nama_beasiswa}}</td>
-                <td style="font-size: 12px;">{{$a->mahasiswa->nama}}</td>
-                <td style="font-size: 12px;">{{$a->mahasiswa->prodi->nama_prodi}}</td>
-                <td style="font-size: 12px;">{{$a->mahasiswa->nim}}</td>
-                <td style="font-size: 12px;">{{$a->mahasiswa->ipk}}</td>
-                <td style="font-size: 12px;">{{$a->mahasiswa->semester}}</td>
+                <td style="font-size: 12px;">{{$a->nama_beasiswa}}</td>
+                <td style="font-size: 12px;">{{$a->nama}}</td>
+                <td style="font-size: 12px;">{{$a->nama_prodi}}</td>
+                <td style="font-size: 12px;">{{$a->nim}}</td>
+                <td style="font-size: 12px;">{{$a->ipk}}</td>
+                <td style="font-size: 12px;">{{$a->semester}}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
+
+    <div class="mengetahui" align="right">
+        <p>
+            Mengetahui,
+        </p>
+    </div>
+
+    <div style="padding-top: 100px">
+
+        <p align="right">
+            {{$data['wadir3']->nama}}
+        </p>
+    </div>
+
+    <div class="tengah">
+        <img class="tengah" src="{{public_path('assets/images/kop.png')}}" style="opacity: 0.1;">
+    </div>
 </body>

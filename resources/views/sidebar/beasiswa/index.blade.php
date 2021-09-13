@@ -42,6 +42,9 @@
     @error('min_ipk')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+    @error('persyaratan')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
